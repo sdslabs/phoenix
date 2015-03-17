@@ -1,0 +1,8 @@
+{
+  "name": "phoenix",
+  "description": "Redis based phantomjs queue",
+  "dependencies": {
+    "redis": "0.12.1",
+    "phantomjs": "1.9.16"
+  }
+}
