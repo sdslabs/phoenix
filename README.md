@@ -1,5 +1,5 @@
 #Phoenix
-Redis based queue
+Redis based phantomjs queue
 
 ##Instructions
 
