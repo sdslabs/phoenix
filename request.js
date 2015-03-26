@@ -11,7 +11,7 @@ var validBody = function(request){
   var method = request.method.toUpperCase();
   var isBodySet = request.body || request.json || request.post;
   var canSendBody = valid_body_methods.indexOf(method) >=0;
-  return isBodySet && canSendBody;
+  return (isBodySet && canSendBody) || (!isBodySet && !canSendBody);
 }
 
 // This parses the request object for phantom

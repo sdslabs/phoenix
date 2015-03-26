@@ -1,0 +1,21 @@
+# Name of the redis queue to listen to
+queue: phoenix
+request:
+  url: "http://me.captnemo.in/"
+  # This is the query string appended to the url
+  query:
+    phantom: 1
+  # This is just basic auth
+  auth:
+    username: username
+    password: password
+  headers:
+    Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
+    Accept-Encoding: "gzip, deflate, sdch"
+    Accept-Language: "en-US,en;q=0.8,hi;q=0.6,sv;q=0.4"
+    Cache-Control: "max-age=0"
+    Connection: "keep-alive"
+    DNT: 1
+    User-Agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2342.2 Safari/537.36"
+# This is custom js to run in the proper context on the webpage _before_ it loads
+js: custom.js
