@@ -1,5 +1,4 @@
-var redis = require('redis')
-var client = redis.createClient()
+var redis = require('redis').createClient();
 var path = require('path')
 var childProcess = require('child_process')
 var phantomjs = require('phantomjs')
