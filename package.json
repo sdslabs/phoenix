@@ -6,5 +6,11 @@
     "merge": "^1.2.0",
     "phantomjs": "1.9.16",
     "redis": "0.12.1"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.1"
+  },
+  "scripts":{
+    "test": "./node_modules/.bin/mocha"
   }
 }
