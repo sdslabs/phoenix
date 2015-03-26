@@ -1,7 +1,7 @@
 request:
 	method: GET
   encoding: utf8
-	qs: {}
+	query: {}
 	# removes the referer header when a redirect happens
 	removeRefererHeader: false
 	headers:
