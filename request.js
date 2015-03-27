@@ -19,7 +19,7 @@ var validBody = function(request){
   var valid_body_methods = ['POST', 'PUT', 'PATCH'];
   var valid_no_body_methods = ['GET', 'TRACE', 'DELETE', 'HEAD', 'OPTIONS'];
   var method = request.method.toUpperCase();
-  var isBodySet = request.body || request.json || request.post;
+  var isBodySet = request.body || request.json || request.data;
   var canSendBody = valid_body_methods.indexOf(method) >=0;
   var cantSendBody = valid_no_body_methods.indexOf(method)>=0;
   return (isBodySet && canSendBody) || (!isBodySet && cantSendBody);
@@ -37,8 +37,8 @@ module.exports = function(request){
   settings.encoding = request.encoding;
   // The priority order is BODY > JSON > POST
   if(validBody(request)){
-    if(request.post){
-      settings.body = qs.stringify(request.post);
+    if(request.data){
+      settings.body = qs.stringify(request.data);
       settings.header['Content-Type'] = 'application/x-www-form-urlencoded';
     }
     if(request.json){

@@ -4,7 +4,7 @@ request:
   url: "http://me.captnemo.in/"
   # This is only for POST, PATCH, PUT requests
   body: "This is the complete body that you wish to send"
-  post:
+  data:
     this: is
     an: object
     which: will

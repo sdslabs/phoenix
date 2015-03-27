@@ -51,7 +51,7 @@ describe('Request', function(){
     it('for OPTIONS + post', function(){
       fn = function(){
         req.method = 'OPTIONS';
-        req.post = {"phantom":"opera"};
+        req.body = {"phantom":"opera"};
       }
     });
 
@@ -89,7 +89,7 @@ describe('Request', function(){
 
     it('for PATCH + post body', function(){
       req.method = 'PATCH';
-      req.post = {a:1};
+      req.body = {a:1};
     });
 
     afterEach(function(){
@@ -117,7 +117,7 @@ describe('Request', function(){
 
     it('for PATCH + post', function(){
       req.method = 'PATCH';
-      req.post = {a:1};
+      req.data = {a:1};
       expectedContentType = 'application/x-www-form-urlencoded';
     });
 
