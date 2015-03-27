@@ -28,9 +28,19 @@ var validBody = function(request){
   return (isBodySet && canSendBody) || (!isBodySet && cantSendBody);
 }
 
+var defaultSettings = {
+  webSecurityEnabled: true,
+  javascriptEnabled:  true,
+  userAgent: 'Phoenix/1.3',
+  XSSAuditingEnabled: true,
+  localToRemoteUrlAccessEnabled: true,
+  loadImages: true,
+  resourceTimeout: 1000
+}
+
 // This parses the request object for phantom
 var req = function(request){
-  var settings = {};
+  var settings = defaultSettings;
   var link = url.parse(request.url, true);
   delete link.search;
   link.auth = auth(request);
