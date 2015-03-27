@@ -27,7 +27,8 @@ redis.on('message', function(channel, message) {
     if(err)
       return false;
 
-    var configPath = path.join(dir, './config.json');
+    var configPath = path.join(dir, './config.json'),
+      id = path.basename(dir);
 
     // Write the request config to the tmp file
     fs.writeFile(configPath, JSON.stringify(settings), {mode: 0600}, function (err){
@@ -36,7 +37,7 @@ redis.on('message', function(channel, message) {
         return;
       }
 
-      console.log('Starting phantomjs');
+      console.log('START: ' + id);
 
       var childArgs = [
         path.join(__dirname, 'phantom.js'),
@@ -47,15 +48,13 @@ redis.on('message', function(channel, message) {
         childArgs.push(path.join(__dirname, config.js));
       }
 
-      console.log(childArgs);
-
       childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
         var logPath = path.join(dir, './browser.log'),
          errLogPath = path.join(dir, './page.log');
         // done with the request
         fs.writeFile(logPath, stdout);
         fs.writeFile(errLogPath, stderr);
-        console.log('Phantomjs Closed');
+        console.log('STOP : ' + id);
       });
     });
   });

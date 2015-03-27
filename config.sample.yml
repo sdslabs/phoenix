@@ -13,6 +13,7 @@ request:
   query:
     phantom: 1
   # removes the referer header when a redirect happens
+  # Currently not implemented
   removeRefererHeader: false
   #In case you want to send a json body
   #This is automatically serialized and adds the content type headers for json

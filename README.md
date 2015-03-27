@@ -24,3 +24,18 @@ Note that some options are incompatible with each other, for eg
 you can't send a request body in a GET request.
 
 Do not edit default.yml unless you are working on phoenix itself.
+
+##Injection
+By setting the `js` key in config.yml you can run code on the loaded web page before the page is
+loaded itself.
+
+##Logging
+phoenix logs every phantomjs instance. For every instance that is created, a new temporary
+directory is created in the logs directory. The config passed to phantomjs is stored in the `config.json`
+file. The output from the phantomjs instance is stored in two files: `browser.log` and `page.log`.
+
+`browser.log` is the higher level log file, which records events and errors made by the browser instance.
+Such as Injection events and final status of the page load.
+
+`page.log` holds the log from the page context. This includes any console.log statements made from the page
+and any alert/confirm/prompt calls as well.
