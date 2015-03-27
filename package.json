@@ -6,8 +6,10 @@
     "clone": "^1.0.2",
     "js-yaml": "^3.2.7",
     "merge": "^1.2.0",
+    "path-is-absolute": "^1.0.0",
     "phantomjs": "1.9.16",
     "redis": "0.12.1",
+    "shelljs": "^0.4.0",
     "tmp": "0.0.25",
     "valid-url": "^1.0.9"
   },

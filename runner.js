@@ -4,10 +4,12 @@ var phantomjs = require('phantomjs');
 var binPath = phantomjs.path;
 var tmp = require('tmp');
 var fs = require('fs');
+var sh = require("shelljs");
 
 module.exports = function(config, phantomConfig, cb){
+  var cwd = sh.pwd();
   tmp.dir({
-    dir: path.join(__dirname, 'logs/'),
+    dir: path.join(cwd, 'logs/'),
     prefix: 'phoenix-',
     postfix: '',
     keep: true
