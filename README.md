@@ -15,7 +15,7 @@ Before you start using the application, assure that a redis server is running (`
 Phoenix will refuse to start if redis is down
 
 * Run app.js (`$ node app.js`)
-* Publish a new message using `redis-cli` (`redis> PUBLISH imajs http://backdoor.sdslabs.co/`)
+* Publish a new message using `redis-cli` (`redis> PUBLISH phoenix http://backdoor.sdslabs.co/`)
 
 This trigger the node application to spawn a new `phantomjs` child process and opens the website.
 
@@ -50,3 +50,10 @@ To run `phoenix` in a directory, the following conditions must be true:
 
 After that you can push messages to the channel specified in the config, and phoenix will
 start runners for each of your requests.
+
+You can publish two things to the channel:
+
+- A complete valid http/https url. This replaces the url provided in the config
+- A partial querystring (such as `a=1&b=2`). This overrides and merges with existing query params in the config
+
+This way, you can send an `id=1` and phoenix will open the correct url.

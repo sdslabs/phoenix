@@ -1,6 +1,7 @@
 var url = require('url');
 var merge = require('merge');
 var qs = require('querystring');
+var validUrl = require('valid-url');
 
 var auth = function(request){
   if(!request.auth)
@@ -28,9 +29,10 @@ var validBody = function(request){
 }
 
 // This parses the request object for phantom
-module.exports = function(request){
+var req = function(request){
   var settings = {};
   var link = url.parse(request.url, true);
+  delete link.search;
   link.auth = auth(request);
   link.query = merge(link.query, request.query);
   settings.url = url.format(link);
@@ -58,3 +60,19 @@ module.exports = function(request){
 
   return settings;
 }
+
+req.updateUrl = function(settings, partial){
+  if(validUrl.isWebUri(partial)){
+    settings.url = partial;
+  }
+  else if(partial.length > 0){
+    var query = qs.parse(partial);
+    var link = url.parse(settings.url, true);
+    delete link.search;
+    link.query = merge.recursive(link.query, query);
+    settings.url = url.format(link);
+  }
+  return settings.url;
+}
+
+module.exports = req;

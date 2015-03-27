@@ -4,9 +4,11 @@ var childProcess = require('child_process');
 var phantomjs = require('phantomjs');
 var binPath = phantomjs.path;
 var config = require('./config')();
-var settings = require('./request')(config.request);
+var request = require('./request')
+var settings = request(config.request);
 var tmp = require('tmp');
 var fs = require('fs');
+var clone = require('clone');
 
 redis.on('error', function(error) {
   // We die with redis
@@ -15,6 +17,9 @@ redis.on('error', function(error) {
 })
 
 redis.on('message', function(channel, message) {
+
+  var phantomConfig = clone(settings);
+  phantomConfig.url = request.updateUrl(phantomConfig, message);
 
   var cleanUp;
 
@@ -31,7 +36,7 @@ redis.on('message', function(channel, message) {
       id = path.basename(dir);
 
     // Write the request config to the tmp file
-    fs.writeFile(configPath, JSON.stringify(settings), {mode: 0600}, function (err){
+    fs.writeFile(configPath, JSON.stringify(phantomConfig), {mode: 0600}, function (err){
       if(err){
         console.error("Couldn't write config");
         return;

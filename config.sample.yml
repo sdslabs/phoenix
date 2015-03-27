@@ -1,7 +1,7 @@
 # Name of the redis queue to listen to
 queue: phoenix
 request:
-  url: "http://me.captnemo.in/"
+  url: "http://google.com/"
   # This is only for POST, PATCH, PUT requests
   body: "This is the complete body that you wish to send"
   data:
