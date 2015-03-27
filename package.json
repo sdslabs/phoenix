@@ -5,12 +5,13 @@
     "js-yaml": "^3.2.7",
     "merge": "^1.2.0",
     "phantomjs": "1.9.16",
-    "redis": "0.12.1"
+    "redis": "0.12.1",
+    "tmp": "0.0.25"
   },
   "devDependencies": {
     "mocha": "^2.2.1"
   },
-  "scripts":{
+  "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec"
   }
 }
