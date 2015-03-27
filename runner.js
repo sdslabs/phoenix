@@ -5,15 +5,17 @@ var binPath = phantomjs.path;
 var tmp = require('tmp');
 var fs = require('fs');
 
-module.exports = function(config, phantomConfig){
+module.exports = function(config, phantomConfig, cb){
   tmp.dir({
     dir: path.join(__dirname, 'logs/'),
     prefix: 'phoenix-',
     postfix: '',
     keep: true
   },function (err, dir){
-    if(err)
-      return false;
+    if(err){
+      cb(err);
+      return;
+    }
 
     var configPath = path.join(dir, './config.json'),
       id = path.basename(dir);
@@ -21,7 +23,7 @@ module.exports = function(config, phantomConfig){
     // Write the request config to the tmp file
     fs.writeFile(configPath, JSON.stringify(phantomConfig), {mode: 0600}, function (err){
       if(err){
-        console.error("Couldn't write config");
+        cb(new Error("Couldn't write config"));
         return;
       }
 
@@ -43,6 +45,7 @@ module.exports = function(config, phantomConfig){
         fs.writeFile(logPath, stdout);
         fs.writeFile(errLogPath, stderr);
         console.log('STOP : ' + id);
+        cb(null, id);
       });
     });
   });

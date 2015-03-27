@@ -17,7 +17,14 @@ listen.on('message', function(channel, request_id) {
   redis.lrange(config.queue+':queue', request_id, request_id, function(err, message){
     var phantomConfig = clone(settings);
     phantomConfig.url = request.updateUrl(phantomConfig, message[0]);
-    runner(config, phantomConfig);
+    runner(config, phantomConfig, function (err, phantomId){
+      if(err){
+        console.error(err);
+      }
+      else{
+        redis.set(config.queue+':log:'+request_id, phantomId);
+      }
+    });
   });
 
 });
