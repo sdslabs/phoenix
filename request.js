@@ -3,15 +3,26 @@ var merge = require('merge');
 var qs = require('querystring');
 
 var auth = function(request){
-  return request.username+":"+request.password;
+  var auth = "";
+  if(request.auth.username)
+    auth+=request.auth.username;
+  auth+=":";
+  if(request.auth.password)
+    auth+=request.auth.password;
+  if(auth!==":")
+    return auth;
+  else
+    return null;
 }
 
 var validBody = function(request){
   var valid_body_methods = ['POST', 'PUT', 'PATCH'];
+  var valid_no_body_methods = ['GET', 'TRACE', 'DELETE', 'HEAD', 'OPTIONS'];
   var method = request.method.toUpperCase();
   var isBodySet = request.body || request.json || request.post;
   var canSendBody = valid_body_methods.indexOf(method) >=0;
-  return (isBodySet && canSendBody) || (!isBodySet && !canSendBody);
+  var cantSendBody = valid_no_body_methods.indexOf(method)>=0;
+  return (isBodySet && canSendBody) || (!isBodySet && cantSendBody);
 }
 
 // This parses the request object for phantom
@@ -36,11 +47,11 @@ module.exports = function(request){
     }
     if(request.body){
       settings.body = request.body;
+      delete settings.header['Content-Type'];
     }
   }
   else{
-    console.error("Invalid Request Body");
-    process.exit(0);
+    throw new Error("Invalid Request Body");
   }
 
   return settings;
