@@ -19,7 +19,10 @@ console.log("URL:\t\t" + settings.url);
 if(args[2]){
   console.log("INJECT:\t\t"+args[2]);
   page.onInitialized = function (){
-    page.injectJs(args[2]);
+    var code = require(args[2]).run();
+    page.evaluate(function (code) {
+      code();
+    }, code);
   };
 };
 

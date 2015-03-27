@@ -37,7 +37,7 @@ module.exports = function(config, phantomConfig, cb){
       ];
 
       if(config.js){
-        childArgs.push(path.join(__dirname, config.js));
+        childArgs.push(path.join(cwd, config.js));
       }
 
       childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
