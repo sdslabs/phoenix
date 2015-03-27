@@ -31,7 +31,6 @@ describe('Request', function(){
     url.parse(request(config.request).url);
   });
 
-
   describe('should raise error for invalid bodies', function(){
     var req, fn;
     beforeEach(function(){
