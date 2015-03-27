@@ -1,7 +1,7 @@
 {
   "name": "phantom-phoenix",
   "description": "Redis based phantomjs queue and runner",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "dependencies": {
     "clone": "^1.0.2",
     "js-yaml": "^3.2.7",
