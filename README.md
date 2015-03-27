@@ -15,7 +15,6 @@ Before you start using the application, assure that a redis server is running (`
 Phoenix will refuse to start if redis is down
 
 * Run app.js (`$ node app.js`)
-* Publish a new message using `redis-cli` (`redis> PUBLISH phoenix http://backdoor.sdslabs.co/`)
 
 This trigger the node application to spawn a new `phantomjs` child process and opens the website.
 
@@ -48,12 +47,37 @@ To run `phoenix` in a directory, the following conditions must be true:
 
 - a valid `config.yml` file must exist in the directory
 
-After that you can push messages to the channel specified in the config, and phoenix will
-start runners for each of your requests.
+After that you can append messages to the list specified in the config, and phoenix will
+start runners for each of your requests once you publish the id
 
-You can publish two things to the channel:
+You can append two things to the list:
 
 - A complete valid http/https url. This replaces the url provided in the config
 - A partial querystring (such as `a=1&b=2`). This overrides and merges with existing query params in the config
 
 This way, you can send an `id=1` and phoenix will open the correct url.
+
+##Redis
+
+Instead of just using a redis pubsub, we use a hybrid pubsub+list model as queue to store logs. Instead
+of directly publishing the request to the channel, you push it to a list, and then publish the index
+of the just pushed item on the list. The list is maintained at `$channel:queue`, where $channel is the queue
+name specified in the config.
+
+For, eg if the channel name is the default (`phoenix`), you do the following:
+
+- run `phoenix`
+- `redis-cli`
+
+```
+RPUSH phoenix:queue "http://google.com"`
+(integer) 8
+PUBLISH phoenix 7
+```
+
+phoenix will pick this up and give something like following as output:
+
+```
+START: phoenix-11634lNeXLbHqhRM3
+STOP : phoenix-11634lNeXLbHqhRM3
+```
