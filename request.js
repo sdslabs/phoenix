@@ -3,6 +3,8 @@ var merge = require('merge');
 var qs = require('querystring');
 
 var auth = function(request){
+  if(!request.auth)
+    return null;
   var auth = "";
   if(request.auth.username)
     auth+=request.auth.username;

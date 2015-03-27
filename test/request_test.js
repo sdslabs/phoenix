@@ -26,6 +26,9 @@ describe('Request', function(){
     config.request.auth.password = "password";
     link = url.parse(request(config.request).url);
     assert.equal(link.auth, ":password");
+
+    delete config.request.auth;
+    url.parse(request(config.request).url);
   });
 
 
