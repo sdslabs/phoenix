@@ -31,10 +31,16 @@ module.exports = function(config, phantomConfig, cb){
 
       console.log('START: ' + id);
 
-      var childArgs = [
-        path.join(__dirname, 'phantom.js'),
-        configPath
-      ];
+      var childArgs = []
+
+      if(config.phantom){
+        childArgs.push(path.join(cwd, config.phantom));
+      }
+      else{
+        childArgs.push(path.join(__dirname, 'phantom.js'));
+      }
+
+      childArgs.push(configPath);
 
       if(config.js){
         childArgs.push(path.join(cwd, config.js));
