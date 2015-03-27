@@ -39,3 +39,14 @@ Such as Injection events and final status of the page load.
 
 `page.log` holds the log from the page context. This includes any console.log statements made from the page
 and any alert/confirm/prompt calls as well.
+
+##Usage
+Instead of cloning and running the entire repo for each project, you can use the npm package
+(called `phantom-phoenix`), which has its own binary called `phoenix` which you can run.
+
+To run `phoenix` in a directory, the following conditions must be true:
+
+- a valid `config.yml` file must exist in the directory
+
+After that you can push messages to the channel specified in the config, and phoenix will
+start runners for each of your requests.

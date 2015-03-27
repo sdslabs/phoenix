@@ -1,6 +1,7 @@
 {
-  "name": "phoenix",
-  "description": "Redis based phantomjs queue",
+  "name": "phantom-phoenix",
+  "description": "Redis based phantomjs queue and runner",
+  "version": "1.0.0",
   "dependencies": {
     "js-yaml": "^3.2.7",
     "merge": "^1.2.0",
@@ -13,5 +14,8 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "bin": {
+    "phoenix" : "./app.js"
   }
 }
