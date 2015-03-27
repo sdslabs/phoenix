@@ -1,3 +1,5 @@
+#!/bin/sh
+':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
 var listen = require('redis').createClient();
 var redis  = require('redis').createClient();
 var config = require('./config')();
