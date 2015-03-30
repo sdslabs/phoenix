@@ -29,14 +29,16 @@ var validBody = function(request){
 }
 
 var defaultSettings = {
-  webSecurityEnabled: true,
-  javascriptEnabled:  true,
-  userAgent: 'Phoenix/1.3',
-  XSSAuditingEnabled: true,
-  localToRemoteUrlAccessEnabled: true,
-  loadImages: true,
-  resourceTimeout: 1000
-}
+  "phantom": {
+    "webSecurityEnabled": false,
+    "javascriptEnabled":  true,
+    "userAgent": "Phoenix/1.3",
+    "XSSAuditingEnabled": true,
+    "localToRemoteUrlAccessEnabled": true,
+    "loadImages": true,
+    "resourceTimeout": 3000
+  }
+};
 
 // This parses the request object for phantom
 var req = function(request){
