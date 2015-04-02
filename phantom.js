@@ -66,7 +66,7 @@ var c4timer = function(time){
 page.onResourceRequested = function(requestData) {
   console.error("REQUEST:\t\t"+requestData.url);
   if(settings.url!==requestData.url)
-    c4timer(1000);
+    c4timer(4000);
 };
 page.onResourceTimeout = function(requestData) {
   console.error("TIMEOUT:\t\t"+requestData.url);

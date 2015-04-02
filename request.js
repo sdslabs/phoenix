@@ -30,7 +30,7 @@ var validBody = function(request){
 
 var defaultSettings = {
   "phantom": {
-    "webSecurityEnabled": false,
+    "webSecurityEnabled": true,
     "javascriptEnabled":  true,
     "userAgent": "Phoenix/1.3",
     "XSSAuditingEnabled": true,
