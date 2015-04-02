@@ -22,10 +22,12 @@ page.settings = settings.phantom;
 if(args[2]){
   console.log("INJECT:\t\t"+args[2]);
   page.onInitialized = function (){
-    var code = require(args[2]).run();
-    page.evaluate(function (code) {
-      console.error(code());
-    }, code);
+    if(page.url === settings.url){
+      var code = require(args[2]).run();
+      page.evaluate(function (code) {
+        console.error(code());
+      }, code);
+    }
   };
 };
 

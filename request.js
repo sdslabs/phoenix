@@ -49,6 +49,8 @@ var req = function(request){
   link.query = merge(link.query, request.query);
   settings.url = url.format(link);
   settings.header = request.headers;
+  if(!settings.header)
+    settings.header = [];
   settings.operation = request.method;
   settings.encoding = request.encoding;
   // The priority order is BODY > JSON > POST
