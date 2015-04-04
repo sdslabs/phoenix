@@ -1,14 +1,14 @@
-#Phoenix [![Build Status](https://travis-ci.org/sdslabs/phoenix.svg?branch=master)](https://travis-ci.org/sdslabs/phoenix)
+# Phoenix [![Build Status](https://travis-ci.org/sdslabs/phoenix.svg?branch=master)](https://travis-ci.org/sdslabs/phoenix)
 
 Redis based phantomjs queue
 
-##Instructions
+## Instructions
 
 * Install `redis` (https://github.com/antirez/redis)
 * Install npm modules(`$ npm install`)
 * Run tests (`npm test`)
 
-##Usage
+## Usage
 
 By default it subscribes to a single channel specified in the config
 Before you start using the application, assure that a redis server is running (`$ redis-server`).
@@ -24,11 +24,11 @@ you can't send a request body in a GET request.
 
 Do not edit default.yml unless you are working on phoenix itself.
 
-##Injection
+## Injection
 By setting the `js` key in config.yml you can run code on the loaded web page before the page is
 loaded itself.
 
-##Logging
+## Logging
 phoenix logs every phantomjs instance. For every instance that is created, a new temporary
 directory is created in the logs directory. The config passed to phantomjs is stored in the `config.json`
 file. The output from the phantomjs instance is stored in two files: `browser.log` and `page.log`.
@@ -39,7 +39,7 @@ Such as Injection events and final status of the page load.
 `page.log` holds the log from the page context. This includes any console.log statements made from the page
 and any alert/confirm/prompt calls as well.
 
-##Usage
+## Usage
 Instead of cloning and running the entire repo for each project, you can use the npm package
 (called `phantom-phoenix`), which has its own binary called `phoenix` which you can run.
 
@@ -57,7 +57,7 @@ You can append two things to the list:
 
 This way, you can send an `id=1` and phoenix will open the correct url.
 
-##Redis
+## Redis
 
 Instead of just using a redis pubsub, we use a hybrid pubsub+list model as queue to store logs. Instead
 of directly publishing the request to the channel, you push it to a list, and then publish the index
