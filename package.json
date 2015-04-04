@@ -1,7 +1,29 @@
 {
   "name": "phantom-phoenix",
   "description": "Redis based phantomjs queue and runner",
-  "version": "1.4.4",
+  "keywords": [
+    "phantom",
+    "phantomjs",
+    "queue",
+    "pubsub",
+    "tasks",
+    "jobs",
+    "runner",
+    "task-runner"
+  ],
+  "homepage": "https://github.com/sdslabs/phoenix",
+  "bugs": {
+    "url" : "https://github.com/sdslabs/phoenix/issues"
+  },
+  "author": {
+    "name" : "Abhay Rana",
+    "email" : "nemo@sdslabs.co.in",
+    "url" : "https://captnemo.in"
+  },
+  "preferGlobal": true,
+  "repository": "sdslabs/phoenix",
+  "license" : "MIT",
+  "version": "1.4.5",
   "dependencies": {
     "clone": "^1.0.2",
     "js-yaml": "^3.2.7",
