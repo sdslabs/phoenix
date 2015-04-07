@@ -23,7 +23,7 @@
   "preferGlobal": true,
   "repository": "sdslabs/phoenix",
   "license" : "MIT",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "dependencies": {
     "clone": "^1.0.2",
     "js-yaml": "^3.2.7",
