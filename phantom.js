@@ -2,6 +2,7 @@ var page = require('webpage').create();
 var system = require('system');
 var fs = require('fs');
 var args = system.args;
+var url = require('./phantom/url.js');
 var timeout;
 
 console.error = function (){
@@ -20,9 +21,10 @@ console.log("URL:\t\t" + settings.url);
 page.settings = settings.phantom;
 
 if(args[2]){
-  console.log("INJECT:\t\t"+args[2]);
   page.onInitialized = function (){
-    if(page.url === settings.url){
+    var pageUrl = url.format(url.parse(page.url));
+    if(pageUrl === settings.url){
+      console.log("INJECT:\t\t"+args[2]);
       var code = require(args[2]).run();
       page.evaluate(function (code) {
         console.error(code());
